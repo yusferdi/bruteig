@@ -143,14 +143,10 @@ for($i = 0; $i <= 9999999999999; $i++)
 					$l = 0;
 				}
 
-				if($lists[$l] != ":" || !empty($lists[$l])){
-					print "trying with proxy => ".$lists[$l]."\n";
-					$return = crotz($user, sprintf('%06d', $i), $lists[$l]);
+				print "trying with proxy => ".$lists[$l]."\n";
+				$return = crotz($user, sprintf('%06d', $i), $lists[$l]);
 
-					if($return == "success" || $return != "block"){
-						break;
-					}
-				} else {
+				if($return == "success" || $return != "block"){
 					break;
 				}
 			}
