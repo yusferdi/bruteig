@@ -121,9 +121,11 @@ function crotz($x, $y, $z)
     {
             print "[".date('H:m:s')."] account with ".$x." as username is not registered\n";
             $return = "unregist";
+    } else if ($exec == "") {
+    		$return = "disc";
     } else {
-    	print("This proxy ".$z." is blocked\n");
-    	$return = "block";
+    		print("This proxy ".$z." is blocked\n");
+    		$return = "block";
     }
 
     return $return;
@@ -153,9 +155,12 @@ for($i = 0; $i <= 9999999999999; $i++)
 		} else if($return == "success"){
 			print "bruted!!";
 			break;
+		} else if($return == "disc"){
+			print "You should check your internet!\n";
+			break;
 		}
 	} else {
-		print "You should check your internet!";
+		print "You should check your internet!\n";
 		break;
 	}
 }
