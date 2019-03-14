@@ -137,10 +137,10 @@ for($i = 0; $i <= 9999999999999; $i++)
 
 		if($return == "block"){
 			while ($l <= count($lists)) {
-				if($l = count($lists)){
-					$l = 0;
-				} else {
+				if($l < count($lists)){
 					$l = $l+1;
+				} else {
+					$l = 0;
 				}
 
 				if($lists[$l] != ":" || !empty($lists[$l])){
